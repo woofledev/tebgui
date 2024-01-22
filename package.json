@@ -1,0 +1,27 @@
+{
+  "name": "tebgui",
+  "version": "0.1.0-alpha",
+  "description": "simple gui control for the tor expert bundle",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder"
+  },
+  "author": "woofledev",
+  "license": "MIT",
+  "build": {
+    "appId": "com.woofledev.tebgui",
+    "productName": "tebgui",
+    "directories": {
+      "output": "dist"
+    }
+  },
+
+  "devDependencies": {
+    "electron": "^28.1.4",
+    "electron-builder": "^24.9.1"
+  },
+  "dependencies": {
+    "tar": "^6.2.0"
+  }
+}
