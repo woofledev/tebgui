@@ -1,4 +1,4 @@
-// Windows thing to run cmds with elevated perms
+// util: windows thing to run cmd commands with elevated perms
 const fs = require("fs");
 const {spawnSync} = require("child_process");
 
@@ -6,7 +6,7 @@ module.exports = (command)=>{
   command = command.replace("\n", "");
   const cs = `
   set UAC = CreateObject("Shell.Application")
-  UAC.ShellExecute "cmd", "/c ${command}", "", "runas", 1
+  UAC.ShellExecute "cmd", "/c ${command}", "", "runas", 0
   `;
 
 

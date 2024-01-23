@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>tebgui 0.2.0-alpha</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline'">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <dialog id="dconfig">
+    <form method="dialog"> <button class="btn">close</button> </form>
+
+
+    <div> <b>event log:</b> log of events this session </div>
+    <textarea id="eventlog" readonly style="background: var(--pri-bg); color: var(--pri-fg)"></textarea>
+
+    <div> <b>config:</b> edit the torrc file </div>
+    <textarea id="config" style="background: var(--pri-bg); color: var(--pri-fg)"></textarea>
+    <button class="btn" id="config-save">save</button>
+  </dialog>
+  <button class="btn" onclick="dconfig.showModal()">Settings</button>
+
+
+  <div class="main">
+    <button id="start">Connect</button>
+  </div>
+  <footer></footer>
+</body>
+</html>

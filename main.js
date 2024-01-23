@@ -6,20 +6,20 @@ function init() {
     height: 700,
     autoHideMenuBar: true,
     webPreferences: {
-      preload: `${__dirname}/src/frontend/preload.js`
+      preload: `${__dirname}/ui/preload.js`
     }
   });
 
-  w.loadFile("src/frontend/index.html");
-
-  //w.setMenu(null);
-  //w.webContents.openDevTools();
+  w.loadFile("ui/index.html");
+  // w.setMenu(null);
+  // w.webContents.openDevTools();
 }
 
 
 // listeners
 ipcMain.once("ready", require("./src/download"));
 ipcMain.on("launch", require("./src/launch"));
+ipcMain.on("edit", require("./src/editrc"));
 
 
 
@@ -27,7 +27,7 @@ app.on("ready", ()=>{
   init();
 
   app.on("activate", ()=>{
-    if (BrowserWindow.getAllWindows().length === 0) init()
+    if (BrowserWindow.getAllWindows().length === 0) init();
   });
 });
 

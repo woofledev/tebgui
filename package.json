@@ -1,6 +1,7 @@
 {
   "name": "tebgui",
-  "version": "0.1.0-alpha",
+  "private": true,
+  "version": "0.2.0-alpha",
   "description": "simple gui control for the tor expert bundle",
   "main": "main.js",
   "scripts": {
@@ -12,9 +13,10 @@
   "build": {
     "appId": "com.woofledev.tebgui",
     "productName": "tebgui",
-    "directories": {
-      "output": "dist"
-    }
+    "directories": { "output": "dist" },
+
+    "win": { "target": "7z" },
+    "linux": { "target": "tar.gz" }
   },
 
   "devDependencies": {

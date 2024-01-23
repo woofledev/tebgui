@@ -1,6 +1,7 @@
-// Downloads/sets up the tor expert bundle
+// Downloads/sets up the tor expert bundle, if needed.
 const fs = require("fs");
 const tar = require("tar");
+const {TOR_DIR} = require("../config");
 
 let links = {
   win32: "https://archive.torproject.org/tor-package-archive/torbrowser/13.0.8/tor-expert-bundle-windows-i686-13.0.8.tar.gz",
@@ -12,7 +13,7 @@ let links = {
 
 
 async function downloadTar(){
-  const res = await fetch(links[process.platform]);
+  const res = await fetch( links[process.platform] );
   const stream = fs.createWriteStream("bundle.tar.gz", {flags: "wx"});
 
   await require("stream/promises").finished(
@@ -21,23 +22,20 @@ async function downloadTar(){
 
 
   // extract & remove
-  fs.mkdir("tor-bundle", console.error);
+  fs.mkdir(TOR_DIR, console.error);
+  fs.writeFileSync(`${TOR_DIR}/torrc`, "# https://github.com/radii/tor/blob/master/src/config/torrc.sample.in\n");
 
   tar.x({
     file: "bundle.tar.gz",
-    cwd: "tor-bundle",
+    cwd: TOR_DIR,
     sync: true
   });
   fs.unlink("bundle.tar.gz", console.error);
-
-
-  // torrc if ever needed
-  fs.writeFileSync("tor-bundle/torrc", "");
 }
 
 
 module.exports = async(ipc)=>{
-  if (!fs.existsSync("tor-bundle")) {
+  if (!fs.existsSync(TOR_DIR)) {
     ipc.sender.send("status", "Downloading tor bundle...");
     await downloadTar();
   }
