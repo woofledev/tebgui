@@ -14,6 +14,7 @@
     "appId": "com.woofledev.tebgui",
     "productName": "tebgui",
     "directories": { "output": "dist" },
+    "asar": false,
 
     "win": { "target": "7z" },
     "linux": { "target": "tar.gz" }
